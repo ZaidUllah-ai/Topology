@@ -1,0 +1,2833 @@
+{
+  "edges_list": [
+    {
+      "device_b_ip": "10.5.0.3",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-1",
+      "interface_a": "TenGigE0/0/0/30.922",
+      "interface_b": "Bundle-Ether20.922",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "MLQA-ECOR-CI-COM-001",
+      "source_ip": "10.64.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "BURD-ECOR-CI-COM-001",
+      "target_ip": "10.5.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.70.0.3",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-2",
+      "interface_a": "TenGigE0/0/0/30.916",
+      "interface_b": "Bundle-Ether20.916",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "MLQA-ECOR-CI-COM-001",
+      "source_ip": "10.64.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "ERJA-ECOR-CI-COM-001",
+      "target_ip": "10.70.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.14.0.3",
+      "download": 11607.41,
+      "download_utilization": 29.019,
+      "download_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 28.474996451476514
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 28.524797709302323
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 28.12979982642384
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 28.424898218590606
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 28.113235609666663
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 28.379125683322258
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 27.73902166602007
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 27.26267181509934
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 30.034494503299662
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 29.018526315799996
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "errors": "in-0, out-0",
+      "high_speed": 40000,
+      "id": "edge-3",
+      "interface_a": "Bundle-Ether22.900",
+      "interface_b": "Bundle-Ether20.900",
+      "label": "D-29.019 %, U-25.275 %",
+      "packet_drops": "in-5053, out-3446",
+      "source": "MLQA-ECOR-CI-COM-001",
+      "source_ip": "10.64.0.3",
+      "source_upe_media_device": "NA",
+      "status": "Up",
+      "target": "SULY-ECOR-CI-COM-001",
+      "target_ip": "10.14.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 10109.93,
+      "upload_utilization": 25.275,
+      "upload_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 27.86374464134228
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 26.866852233554816
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 25.16337612370861
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 28.987010155838927
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 28.636212950866668
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 26.248369651096343
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 27.672763941204014
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 27.1300632994702
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 25.284050583973066
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 25.274833358800002
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.67.0.3",
+      "download": 3610.14,
+      "download_utilization": 18.051,
+      "download_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 20.19399481704698
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 20.048594114551495
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 19.500273529139072
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 18.77397699181208
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 20.0743103772
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 17.697580681727572
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 18.0441609780602
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 19.127543282119206
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 19.256118265454543
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 18.05070031333333
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "errors": "in-0, out-0",
+      "high_speed": 20000,
+      "id": "edge-4",
+      "interface_a": "Bundle-Ether30.930",
+      "interface_b": "Bundle-Ether20.930",
+      "label": "D-18.051 %, U-62.298 %",
+      "packet_drops": "in-2394, out-5727",
+      "source": "MLQA-ECOR-CI-COM-001",
+      "source_ip": "10.64.0.3",
+      "source_upe_media_device": "NA",
+      "status": "Up",
+      "target": "MALZ-ECOR-CI-COM-001",
+      "target_ip": "10.67.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 12459.51,
+      "upload_utilization": 62.298,
+      "upload_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 65.42756861409397
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 64.6442782082392
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 64.00490989046357
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 67.12461513261745
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 64.929400618
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 63.85367903136212
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 61.740431131772574
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 61.6779486213245
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 63.089894789090906
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 62.29753179600001
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.8.160.3",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-5",
+      "interface_a": "TenGigE0/0/0/30.914",
+      "interface_b": "GigabitEthernet0/3/1.914",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "MLQA-ECOR-CI-COM-001",
+      "source_ip": "10.64.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "KHRJ-ECOR-CI-COM-001",
+      "target_ip": "10.8.160.3",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.6.0.134",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-6",
+      "interface_a": "TenGigE0/0/0/30.908",
+      "interface_b": "GigabitEthernet4/11.908",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "MLQA-ECOR-CI-COM-001",
+      "source_ip": "10.64.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "DANA-ECOR-CI-COM-001",
+      "target_ip": "10.6.0.134",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.68.0.3",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-7",
+      "interface_a": "TenGigE0/0/0/30.910",
+      "interface_b": "GigabitEthernet1/4.910",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "MLQA-ECOR-CI-COM-001",
+      "source_ip": "10.64.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "UNZH-ECOR-CI-COM-001",
+      "target_ip": "10.68.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.14.0.3",
+      "download": 65.12,
+      "download_utilization": 0.326,
+      "download_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.311037308590604
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.31159706378737545
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.4179766690066225
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.45266110724832215
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.39525834186666664
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.3523615039202658
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.3039365966555184
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.30326998529801324
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.6958779706397307
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.32561773093333335
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "errors": "in-44930, out-0",
+      "high_speed": 20000,
+      "id": "edge-8",
+      "interface_a": "Bundle-Ether1000",
+      "interface_b": "Bundle-Ether1000",
+      "label": "D-0.326 %, U-0.43 %",
+      "packet_drops": "in-0, out-0",
+      "source": "MLQA-ECOR-CI-COM-001",
+      "source_ip": "10.64.0.3",
+      "source_upe_media_device": "NA",
+      "status": "Up",
+      "target": "SULY-ECOR-CI-COM-001",
+      "target_ip": "10.14.0.3",
+      "target_upe_media_device": "NA",
+      "type": "straight",
+      "upload": 86.09,
+      "upload_utilization": 0.43,
+      "upload_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.396470891409396
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.44173498445182724
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.4070287523178807
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.3882464061744966
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.41824338773333336
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.45081989647840526
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.47220058903010037
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.358528599205298
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.6407911989225589
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.43043233346666665
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.5.0.4",
+      "download": 0.01,
+      "download_utilization": 0,
+      "download_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.000015180939597315436
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.000028950166112956814
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.000014908211920529802
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.000008559328859060403
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.000005908133333333334
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.000005528239202657808
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.000017675183946488293
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.000025729139072847684
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.00001693885521885522
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.0000144004
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "errors": "in-0, out-0",
+      "high_speed": 40000,
+      "id": "edge-9",
+      "interface_a": "Bundle-Ether40.923",
+      "interface_b": "Bundle-Ether20.923",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "SULM-ECOR-CI-COM-001",
+      "source_ip": "10.66.0.3",
+      "source_upe_media_device": "NA",
+      "status": "Up",
+      "target": "BURD-ECOR-CI-COM-002",
+      "target_ip": "10.5.0.4",
+      "target_upe_media_device": "NA",
+      "upload": 0.01,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.000016117986577181205
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.00002967720930232558
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.000015943973509933778
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.000008914630872483222
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.0000063967999999999995
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.000006711229235880399
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.000019312909698996654
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.000026345298013245035
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.00001791191919191919
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.000014795999999999999
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.70.0.4",
+      "download": 0.01,
+      "download_utilization": 0,
+      "download_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.000014938389261744965
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.000028475481727574752
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.000014574966887417217
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.000008529395973154362
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.000005901066666666667
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.000005516013289036545
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.000017136454849498327
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.000025149536423841062
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.00001621925925925926
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.000014198533333333333
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "errors": "in-0, out-0",
+      "high_speed": 40000,
+      "id": "edge-10",
+      "interface_a": "Bundle-Ether40.917",
+      "interface_b": "Bundle-Ether20.917",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "SULM-ECOR-CI-COM-001",
+      "source_ip": "10.66.0.3",
+      "source_upe_media_device": "NA",
+      "status": "Up",
+      "target": "ERJA-ECOR-CI-COM-002",
+      "target_ip": "10.70.0.4",
+      "target_upe_media_device": "NA",
+      "upload": 0.01,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.000016144026845637584
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.000029658205980066445
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.000015954437086092716
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.000008900402684563758
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.000006386
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.000006711229235880399
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.00001939531772575251
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.000026328741721854305
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.000017918922558922556
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.0000148028
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.14.0.4",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.000013444026845637584
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.00002515375415282392
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.000012239735099337749
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.000007948322147651006
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.000005403066666666666
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.000005550697674418604
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.000015200802675585285
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.000022333112582781454
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.00001592969696969697
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.000011877066666666667
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "errors": "in-0, out-0",
+      "high_speed": 40000,
+      "id": "edge-11",
+      "interface_a": "Bundle-Ether22.900",
+      "interface_b": "Bundle-Ether20.900",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "SULM-ECOR-CI-COM-001",
+      "source_ip": "10.66.0.3",
+      "source_upe_media_device": "NA",
+      "status": "Up",
+      "target": "SULY-ECOR-CI-COM-002",
+      "target_ip": "10.14.0.4",
+      "target_upe_media_device": "NA",
+      "upload": 0.01,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.000016131275167785234
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.000027945780730897007
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.000015785165562913906
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.000008871006711409398
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.000006516666666666666
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.000006857009966777408
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.00001918996655518395
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.000025567284768211918
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.00001707030303030303
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.000014663066666666667
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.67.0.4",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.000024184161073825502
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.000045339003322259135
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.00002355205298013245
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.000014798926174496644
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.000010216533333333333
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.000010576212624584718
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.00002662769230769231
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.000040016688741721856
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.00002695003367003367
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.0000222496
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "errors": "in-0, out-0",
+      "high_speed": 20000,
+      "id": "edge-12",
+      "interface_a": "Bundle-Ether30.931",
+      "interface_b": "Bundle-Ether20.931",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "SULM-ECOR-CI-COM-001",
+      "source_ip": "10.66.0.3",
+      "source_upe_media_device": "NA",
+      "status": "Up",
+      "target": "MALZ-ECOR-CI-COM-002",
+      "target_ip": "10.67.0.4",
+      "target_upe_media_device": "NA",
+      "upload": 0.01,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.00003216563758389262
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.000058699003322259136
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.000031459072847682115
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.000017478926174496645
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.000012906933333333335
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.000013566777408637875
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.000038135117056856185
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.000052533245033112575
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.000035593265993266
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.00002904533333333333
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.8.160.4",
+      "download": 0.01,
+      "download_utilization": 0,
+      "download_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.000014338523489932886
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.000028035880398671096
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.000014109271523178809
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.000008123489932885906
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.000005606533333333333
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.000005150963455149502
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.000016059531772575254
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.00002507417218543046
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.000014911649831649832
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.000013317733333333331
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "errors": "in-0, out-0",
+      "high_speed": 40000,
+      "id": "edge-13",
+      "interface_a": "Bundle-Ether40.915",
+      "interface_b": "GigabitEthernet0/3/1.915",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-1, out-0",
+      "source": "SULM-ECOR-CI-COM-001",
+      "source_ip": "10.66.0.3",
+      "source_upe_media_device": "NA",
+      "status": "Up",
+      "target": "KHRJ-ECOR-CI-COM-002",
+      "target_ip": "10.8.160.4",
+      "target_upe_media_device": "NA",
+      "upload": 0.01,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.000016142953020134226
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.000029309634551495015
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.00001594953642384106
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.000008899194630872483
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.0000063967999999999995
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.000006721993355481727
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.00001938207357859532
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.00002632569536423841
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.000017918922558922556
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.000014807333333333335
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.6.0.135",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.000012591140939597316
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.000025302724252491695
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.000012530993377483445
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.00000659261744966443
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.000005269733333333333
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.000005036544850498339
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.000014965217391304348
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.000020928079470198675
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.00001445077441077441
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.000011216666666666667
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "errors": "in-0, out-0",
+      "high_speed": 40000,
+      "id": "edge-14",
+      "interface_a": "Bundle-Ether40.909",
+      "interface_b": "GigabitEthernet4/11.909",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-1, out-0",
+      "source": "SULM-ECOR-CI-COM-001",
+      "source_ip": "10.66.0.3",
+      "source_upe_media_device": "NA",
+      "status": "Up",
+      "target": "DANA-ECOR-CI-COM-002",
+      "target_ip": "10.6.0.135",
+      "target_upe_media_device": "NA",
+      "upload": 0.01,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.000016868322147651008
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.000033609700996677734
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.000017267947019867547
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.000008943087248322149
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.000006074133333333333
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.000006780730897009966
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.000020515183946488296
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.00002883483443708609
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.00001935124579124579
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.000015473866666666668
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.68.0.4",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.000008405503355704697
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.000015973554817275748
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.000008014039735099337
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.00000386241610738255
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.0000024064
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.0000023778073089701
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.000010347023411371238
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.000013939470198675497
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.000008857239057239058
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.0000073037333333333335
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "errors": "in-0, out-0",
+      "high_speed": 40000,
+      "id": "edge-15",
+      "interface_a": "Bundle-Ether40.911",
+      "interface_b": "GigabitEthernet1/4.911",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-1, out-0",
+      "source": "SULM-ECOR-CI-COM-001",
+      "source_ip": "10.66.0.3",
+      "source_upe_media_device": "NA",
+      "status": "Up",
+      "target": "UNZH-ECOR-CI-COM-002",
+      "target_ip": "10.68.0.4",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.000013041610738255033
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.000026568106312292357
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.00001287748344370861
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.00000574993288590604
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.0000033290666666666666
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.000003699269102990033
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.000016236254180602007
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.00002330026490066225
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.000014813872053872055
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.000011725866666666666
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.84.0.3",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-16",
+      "interface_a": "Bundle-Ether22.710",
+      "interface_b": "Bundle-Ether20.710",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "FYHA-ECOR-CI-COM-001",
+      "source_ip": "10.83.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "ABHA-ECOR-CI-COM-001",
+      "target_ip": "10.84.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.81.0.3",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-17",
+      "interface_a": "Bundle-Ether22.706",
+      "interface_b": "Bundle-Ether20.706",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "FYHA-ECOR-CI-COM-001",
+      "source_ip": "10.83.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "SAFA-ECOR-CI-COM-001",
+      "target_ip": "10.81.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.85.0.3",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-18",
+      "interface_a": "Bundle-Ether22.704",
+      "interface_b": "Bundle-Ether20.704",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "FYHA-ECOR-CI-COM-001",
+      "source_ip": "10.83.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "SHRY-ECOR-CI-COM-001",
+      "target_ip": "10.85.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.87.0.3",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-19",
+      "interface_a": "Bundle-Ether22.702",
+      "interface_b": "Bundle-Ether20.702",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "FYHA-ECOR-CI-COM-001",
+      "source_ip": "10.83.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "SHWQ-ECOR-CI-COM-001",
+      "target_ip": "10.87.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.82.0.3",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-20",
+      "interface_a": "Bundle-Ether22.918",
+      "interface_b": "Bundle-Ether20.918",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "FYHA-ECOR-CI-COM-001",
+      "source_ip": "10.83.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "SULT-ECOR-CI-COM-001",
+      "target_ip": "10.82.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.22.0.153",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-21",
+      "interface_a": "Bundle-Ether22.700",
+      "interface_b": "Bundle-Ether20.700",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "FYHA-ECOR-CI-COM-001",
+      "source_ip": "10.83.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "OBHR-ECOR-CI-COM-001",
+      "target_ip": "10.22.0.153",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.20.0.3",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-22",
+      "interface_a": "GigabitEthernet0/0/0/29",
+      "interface_b": "GigabitEthernet0/1/0",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "FYHA-ECOR-CI-COM-001",
+      "source_ip": "10.83.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "JELS-ECOR-CI-COM-001",
+      "target_ip": "10.20.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.20.0.4",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-23",
+      "interface_a": "GigabitEthernet0/0/0/27",
+      "interface_b": "GigabitEthernet0/1/0",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "JED1-ECOR-CI-COM-001",
+      "source_ip": "10.78.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "JELS-ECOR-CI-COM-002",
+      "target_ip": "10.20.0.4",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.22.0.149",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-24",
+      "interface_a": "Bundle-Ether22.714",
+      "interface_b": "Bundle-Ether20.714",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "JED1-ECOR-CI-COM-001",
+      "source_ip": "10.78.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "OBHR-ECOR-CI-COM-002",
+      "target_ip": "10.22.0.149",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.87.0.4",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-25",
+      "interface_a": "Bundle-Ether22.715",
+      "interface_b": "Bundle-Ether20.715",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "JED1-ECOR-CI-COM-001",
+      "source_ip": "10.78.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "SHWQ-ECOR-CI-COM-002",
+      "target_ip": "10.87.0.4",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.85.0.4",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-26",
+      "interface_a": "Bundle-Ether22.716",
+      "interface_b": "Bundle-Ether20.716",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "JED1-ECOR-CI-COM-001",
+      "source_ip": "10.78.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "SHRY-ECOR-CI-COM-002",
+      "target_ip": "10.85.0.4",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.81.0.4",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-27",
+      "interface_a": "Bundle-Ether22.717",
+      "interface_b": "Bundle-Ether20.717",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "JED1-ECOR-CI-COM-001",
+      "source_ip": "10.78.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "SAFA-ECOR-CI-COM-002",
+      "target_ip": "10.81.0.4",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.84.0.4",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-28",
+      "interface_a": "Bundle-Ether22.719",
+      "interface_b": "Bundle-Ether20.719",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "JED1-ECOR-CI-COM-001",
+      "source_ip": "10.78.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "ABHA-ECOR-CI-COM-002",
+      "target_ip": "10.84.0.4",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.82.0.4",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-29",
+      "interface_a": "Bundle-Ether22.721",
+      "interface_b": "Bundle-Ether20.721",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "JED1-ECOR-CI-COM-001",
+      "source_ip": "10.78.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "SULT-ECOR-CI-COM-002",
+      "target_ip": "10.82.0.4",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.32.0.3",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-30",
+      "interface_a": "TenGigE0/0/0/42.800",
+      "interface_b": "Bundle-Ether20.800",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "ADAM-ECOR-CI-COM-001",
+      "source_ip": "10.42.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "RSHD-ECOR-CI-COM-001",
+      "target_ip": "10.32.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.76.0.3",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-31",
+      "interface_a": "TenGigE0/0/0/42.810",
+      "interface_b": "Bundle-Ether20.810",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "ADAM-ECOR-CI-COM-001",
+      "source_ip": "10.42.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "HUFO-ECOR-CI-COM-001",
+      "target_ip": "10.76.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.35.0.3",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-32",
+      "interface_a": "TenGigE0/0/0/42.808",
+      "interface_b": "GigabitEthernet0/0/3.808",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "ADAM-ECOR-CI-COM-001",
+      "source_ip": "10.42.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "DHRN-ECOR-CI-COM-001",
+      "target_ip": "10.35.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.32.0.4",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.000015059060402684562
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.000025119468438538205
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.000013159867549668874
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.000008721342281879196
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.000005937866666666666
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.000005822059800664452
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.000017465016722408028
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.000023638278145695363
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.00001452902356902357
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.000012484666666666666
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "errors": "in-0, out-0",
+      "high_speed": 40000,
+      "id": "edge-33",
+      "interface_a": "Bundle-Ether22.801",
+      "interface_b": "Bundle-Ether20.801",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-2, out-0",
+      "source": "RAKA-ECOR-CI-COM-001",
+      "source_ip": "10.41.0.3",
+      "source_upe_media_device": "NA",
+      "status": "Up",
+      "target": "RSHD-ECOR-CI-COM-002",
+      "target_ip": "10.32.0.4",
+      "target_upe_media_device": "NA",
+      "upload": 0.01,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.000016234362416107383
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.00002966033222591362
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.0000159276821192053
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.000008649127516778525
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.0000063498666666666666
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.000006772093023255814
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.00001887317725752508
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.000026279337748344368
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.00001793131313131313
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.000014850133333333334
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.76.0.4",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.000015016778523489934
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.00002682312292358804
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.000013706622516556292
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.000007849261744966444
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.000005890266666666667
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.000005706445182724252
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.000017036789297658863
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.000025469403973509934
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.000015611043771043773
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.000012367199999999999
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "errors": "in-0, out-0",
+      "high_speed": 40000,
+      "id": "edge-34",
+      "interface_a": "Bundle-Ether22.811",
+      "interface_b": "Bundle-Ether20.811",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-1, out-0",
+      "source": "RAKA-ECOR-CI-COM-001",
+      "source_ip": "10.41.0.3",
+      "source_upe_media_device": "NA",
+      "status": "Up",
+      "target": "HUFO-ECOR-CI-COM-002",
+      "target_ip": "10.76.0.4",
+      "target_upe_media_device": "NA",
+      "upload": 0.01,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.000016280536912751675
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.000029653156146179403
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.000015915761589403974
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.000008828724832214765
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.0000064288
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.000006843455149501662
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.000019260334448160537
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.000026300000000000002
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.000017928888888888888
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.000014848933333333335
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.35.0.4",
+      "download": 0.01,
+      "download_utilization": 0,
+      "download_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.000014542953020134228
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.00002635734219269103
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.000013525430463576158
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.000008132348993288591
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.0000056009333333333334
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.000005330498338870432
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.000017798795986622072
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.000025245960264900666
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.000015613872053872054
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.000012711199999999998
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "errors": "in-0, out-0",
+      "high_speed": 40000,
+      "id": "edge-35",
+      "interface_a": "Bundle-Ether22.809",
+      "interface_b": "GigabitEthernet0/0/3.809",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-1, out-0",
+      "source": "RAKA-ECOR-CI-COM-001",
+      "source_ip": "10.41.0.3",
+      "source_upe_media_device": "NA",
+      "status": "Up",
+      "target": "DHRN-ECOR-CI-COM-002",
+      "target_ip": "10.35.0.4",
+      "target_upe_media_device": "NA",
+      "upload": 0.01,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [
+        {
+          "time": "2025-06-23T19:20:00Z",
+          "value": 0
+        },
+        {
+          "time": "2025-06-23T19:25:00Z",
+          "value": 0.000016244429530201343
+        },
+        {
+          "time": "2025-06-23T19:30:00Z",
+          "value": 0.000029686112956810633
+        },
+        {
+          "time": "2025-06-23T19:35:00Z",
+          "value": 0.00001593271523178808
+        },
+        {
+          "time": "2025-06-23T19:40:00Z",
+          "value": 0.000008811946308724832
+        },
+        {
+          "time": "2025-06-23T19:45:00Z",
+          "value": 0.000006426933333333334
+        },
+        {
+          "time": "2025-06-23T19:50:00Z",
+          "value": 0.000006837209302325581
+        },
+        {
+          "time": "2025-06-23T19:55:00Z",
+          "value": 0.000019260334448160537
+        },
+        {
+          "time": "2025-06-23T20:00:00Z",
+          "value": 0.000026311788079470195
+        },
+        {
+          "time": "2025-06-23T20:05:00Z",
+          "value": 0.00001795771043771044
+        },
+        {
+          "time": "2025-06-23T20:10:00Z",
+          "value": 0.000014872133333333335
+        },
+        {
+          "time": "2025-06-23T20:15:00Z",
+          "value": 0
+        }
+      ],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.64.0.3",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-36",
+      "interface_a": "Bundle-Ether20.30",
+      "interface_b": "BE20.30",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "FYHA-ECOR-CI-COM-001",
+      "source_ip": "10.83.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "MLQA-ECOR-CI-COM-001",
+      "target_ip": "10.64.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.78.0.3",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-37",
+      "interface_a": "Bundle-Ether20.60",
+      "interface_b": "Bundle-Ether20.60",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "FYHA-ECOR-CI-COM-001",
+      "source_ip": "10.83.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "JED1-ECOR-CI-COM-001",
+      "target_ip": "10.78.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.41.0.3",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-38",
+      "interface_a": "BE20.70",
+      "interface_b": "BE20.70",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "JED1-ECOR-CI-COM-001",
+      "source_ip": "10.78.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "RAKA-ECOR-CI-COM-001",
+      "target_ip": "10.41.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.41.0.3",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-39",
+      "interface_a": "BE20.10",
+      "interface_b": "BE20.10",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "ADAM-ECOR-CI-COM-001",
+      "source_ip": "10.42.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "RAKA-ECOR-CI-COM-001",
+      "target_ip": "10.41.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.42.0.3",
+      "download": 771.09,
+      "download_utilization": 1.928,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 40000,
+      "id": "edge-40",
+      "interface_a": "BE20.40",
+      "interface_b": "BE20.40",
+      "label": "D-1.928 %, U-21.111 %",
+      "packet_drops": "in-17419, out-2019",
+      "source": "MLQA-ECOR-CI-COM-001",
+      "source_ip": "10.64.0.3",
+      "source_upe_media_device": "NA",
+      "status": "Up",
+      "target": "ADAM-ECOR-CI-COM-001",
+      "target_ip": "10.42.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 8444.37,
+      "upload_utilization": 21.111,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.42.0.3",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-41",
+      "interface_a": "Bundle-Ether20.20",
+      "interface_b": "BE20.20",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "FYHA-ECOR-CI-COM-001",
+      "source_ip": "10.83.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "ADAM-ECOR-CI-COM-001",
+      "target_ip": "10.42.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.66.0.3",
+      "download": 685.71,
+      "download_utilization": 1.714,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 40000,
+      "id": "edge-42",
+      "interface_a": "BE20.10",
+      "interface_b": "BE20.10",
+      "label": "D-1.714 %, U-0.622 %",
+      "packet_drops": "in-1297, out-68",
+      "source": "MLQA-ECOR-CI-COM-001",
+      "source_ip": "10.64.0.3",
+      "source_upe_media_device": "NA",
+      "status": "Up",
+      "target": "SULM-ECOR-CI-COM-001",
+      "target_ip": "10.66.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 248.89,
+      "upload_utilization": 0.622,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    },
+    {
+      "device_b_ip": "10.66.0.3",
+      "download": 0,
+      "download_utilization": 0,
+      "download_utilization_trend": [],
+      "errors": "in-0, out-0",
+      "high_speed": 0,
+      "id": "edge-43",
+      "interface_a": "Bundle-Ether20.80",
+      "interface_b": "Bundle-Ether20.80",
+      "label": "D-0.0 %, U-0.0 %",
+      "packet_drops": "in-0, out-0",
+      "source": "JED1-ECOR-CI-COM-001",
+      "source_ip": "10.78.0.3",
+      "source_upe_media_device": "NA",
+      "status": "",
+      "target": "SULM-ECOR-CI-COM-001",
+      "target_ip": "10.66.0.3",
+      "target_upe_media_device": "NA",
+      "upload": 0,
+      "upload_utilization": 0,
+      "upload_utilization_trend": [],
+      "vlan_id": "NA"
+    }
+  ],
+  "node_list": [
+    {
+      "cpu_utilization": 10,
+      "device": "MLQA-ECOR-CI-COM-001",
+      "id": "MLQA-ECOR-CI-COM-001",
+      "interface": "TenGigE0/0/0/30.922",
+      "ip": "10.64.0.3",
+      "location": "inner",
+      "memory_utilization": 40.13,
+      "position": {
+        "x": 810,
+        "y": 270
+      }
+    },
+    {
+      "cpu_utilization": 3,
+      "device": "SULM-ECOR-CI-COM-001",
+      "id": "SULM-ECOR-CI-COM-001",
+      "interface": "Bundle-Ether40.923",
+      "ip": "10.66.0.3",
+      "location": "inner",
+      "memory_utilization": 40.78,
+      "position": {
+        "x": 670,
+        "y": 480
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "FYHA-ECOR-CI-COM-001",
+      "id": "FYHA-ECOR-CI-COM-001",
+      "interface": "Bundle-Ether22.710",
+      "ip": "10.83.0.3",
+      "location": "inner",
+      "memory_utilization": 0,
+      "position": {
+        "x": 1125,
+        "y": 270
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "JED1-ECOR-CI-COM-001",
+      "id": "JED1-ECOR-CI-COM-001",
+      "interface": "GigabitEthernet0/0/0/27",
+      "ip": "10.78.0.3",
+      "location": "inner",
+      "memory_utilization": 0,
+      "position": {
+        "x": 1250,
+        "y": 480
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "ADAM-ECOR-CI-COM-001",
+      "id": "ADAM-ECOR-CI-COM-001",
+      "interface": "TenGigE0/0/0/42.800",
+      "ip": "10.42.0.3",
+      "location": "inner",
+      "memory_utilization": 0,
+      "position": {
+        "x": 800,
+        "y": 850
+      }
+    },
+    {
+      "cpu_utilization": 2,
+      "device": "RAKA-ECOR-CI-COM-001",
+      "id": "RAKA-ECOR-CI-COM-001",
+      "interface": "Bundle-Ether22.801",
+      "ip": "10.41.0.3",
+      "location": "inner",
+      "memory_utilization": 39.21,
+      "position": {
+        "x": 1100,
+        "y": 850
+      }
+    },
+    {
+      "cpu_utilization": 2,
+      "device": "BURD-ECOR-CI-COM-001",
+      "id": "BURD-ECOR-CI-COM-001",
+      "interface": "Bundle-Ether20.922",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 40.92,
+      "position": {
+        "x": 834,
+        "y": 50
+      }
+    },
+    {
+      "cpu_utilization": 2,
+      "device": "BURD-ECOR-CI-COM-002",
+      "id": "BURD-ECOR-CI-COM-002",
+      "interface": "Bundle-Ether20.923",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 40.98,
+      "position": {
+        "x": 718,
+        "y": 50
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "DANA-ECOR-CI-COM-001",
+      "id": "DANA-ECOR-CI-COM-001",
+      "interface": "GigabitEthernet4/11.908",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 13.77,
+      "position": {
+        "x": 601,
+        "y": 50
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "DANA-ECOR-CI-COM-002",
+      "id": "DANA-ECOR-CI-COM-002",
+      "interface": "GigabitEthernet4/11.909",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 13.69,
+      "position": {
+        "x": 485,
+        "y": 50
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "ERJA-ECOR-CI-COM-001",
+      "id": "ERJA-ECOR-CI-COM-001",
+      "interface": "Bundle-Ether20.916",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 369,
+        "y": 50
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "ERJA-ECOR-CI-COM-002",
+      "id": "ERJA-ECOR-CI-COM-002",
+      "interface": "Bundle-Ether20.917",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 252,
+        "y": 50
+      }
+    },
+    {
+      "cpu_utilization": 1,
+      "device": "KHRJ-ECOR-CI-COM-001",
+      "id": "KHRJ-ECOR-CI-COM-001",
+      "interface": "GigabitEthernet0/3/1.914",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 56.58,
+      "position": {
+        "x": 136,
+        "y": 50
+      }
+    },
+    {
+      "cpu_utilization": 1,
+      "device": "KHRJ-ECOR-CI-COM-002",
+      "id": "KHRJ-ECOR-CI-COM-002",
+      "interface": "GigabitEthernet0/3/1.915",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 56.71,
+      "position": {
+        "x": 20,
+        "y": 50
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "MALZ-ECOR-CI-COM-001",
+      "id": "MALZ-ECOR-CI-COM-001",
+      "interface": "Bundle-Ether20.930",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 20,
+        "y": 169
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "MALZ-ECOR-CI-COM-002",
+      "id": "MALZ-ECOR-CI-COM-002",
+      "interface": "Bundle-Ether20.931",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 20,
+        "y": 288
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "SULY-ECOR-CI-COM-001",
+      "id": "SULY-ECOR-CI-COM-001",
+      "interface": "Bundle-Ether20.900",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 20,
+        "y": 406
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "SULY-ECOR-CI-COM-002",
+      "id": "SULY-ECOR-CI-COM-002",
+      "interface": "Bundle-Ether20.900",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 20,
+        "y": 525
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "UNZH-ECOR-CI-COM-001",
+      "id": "UNZH-ECOR-CI-COM-001",
+      "interface": "GigabitEthernet1/4.910",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 6.44,
+      "position": {
+        "x": 20,
+        "y": 644
+      }
+    },
+    {
+      "cpu_utilization": 1,
+      "device": "UNZH-ECOR-CI-COM-002",
+      "id": "UNZH-ECOR-CI-COM-002",
+      "interface": "GigabitEthernet1/4.911",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 6.41,
+      "position": {
+        "x": 20,
+        "y": 762
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "ABHA-ECOR-CI-COM-001",
+      "id": "ABHA-ECOR-CI-COM-001",
+      "interface": "Bundle-Ether20.710",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 1061,
+        "y": 50
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "ABHA-ECOR-CI-COM-002",
+      "id": "ABHA-ECOR-CI-COM-002",
+      "interface": "Bundle-Ether20.719",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 1172,
+        "y": 50
+      }
+    },
+    {
+      "cpu_utilization": 1,
+      "device": "JELS-ECOR-CI-COM-001",
+      "id": "JELS-ECOR-CI-COM-001",
+      "interface": "GigabitEthernet0/1/0",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 22.17,
+      "position": {
+        "x": 1284,
+        "y": 50
+      }
+    },
+    {
+      "cpu_utilization": 1,
+      "device": "JELS-ECOR-CI-COM-002",
+      "id": "JELS-ECOR-CI-COM-002",
+      "interface": "GigabitEthernet0/1/0",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 22.48,
+      "position": {
+        "x": 1395,
+        "y": 50
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "OBHR-ECOR-CI-COM-001",
+      "id": "OBHR-ECOR-CI-COM-001",
+      "interface": "Bundle-Ether20.700",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 1506,
+        "y": 50
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "OBHR-ECOR-CI-COM-002",
+      "id": "OBHR-ECOR-CI-COM-002",
+      "interface": "Bundle-Ether20.714",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 1618,
+        "y": 50
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "SAFA-ECOR-CI-COM-001",
+      "id": "SAFA-ECOR-CI-COM-001",
+      "interface": "Bundle-Ether20.706",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 1729,
+        "y": 50
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "SAFA-ECOR-CI-COM-002",
+      "id": "SAFA-ECOR-CI-COM-002",
+      "interface": "Bundle-Ether20.717",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 1840,
+        "y": 50
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "SHRY-ECOR-CI-COM-001",
+      "id": "SHRY-ECOR-CI-COM-001",
+      "interface": "Bundle-Ether20.704",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 1840,
+        "y": 156
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "SHRY-ECOR-CI-COM-002",
+      "id": "SHRY-ECOR-CI-COM-002",
+      "interface": "Bundle-Ether20.716",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 1840,
+        "y": 262
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "SHWQ-ECOR-CI-COM-001",
+      "id": "SHWQ-ECOR-CI-COM-001",
+      "interface": "Bundle-Ether20.702",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 1840,
+        "y": 369
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "SHWQ-ECOR-CI-COM-002",
+      "id": "SHWQ-ECOR-CI-COM-002",
+      "interface": "Bundle-Ether20.715",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 1840,
+        "y": 475
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "SULT-ECOR-CI-COM-001",
+      "id": "SULT-ECOR-CI-COM-001",
+      "interface": "Bundle-Ether20.918",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 1840,
+        "y": 581
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "SULT-ECOR-CI-COM-002",
+      "id": "SULT-ECOR-CI-COM-002",
+      "interface": "Bundle-Ether20.721",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 1840,
+        "y": 688
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "DHRN-ECOR-CI-COM-001",
+      "id": "DHRN-ECOR-CI-COM-001",
+      "interface": "GigabitEthernet0/0/3.808",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 56.4,
+      "position": {
+        "x": 350,
+        "y": 1100
+      }
+    },
+    {
+      "cpu_utilization": 1,
+      "device": "DHRN-ECOR-CI-COM-002",
+      "id": "DHRN-ECOR-CI-COM-002",
+      "interface": "GigabitEthernet0/0/3.809",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 21.87,
+      "position": {
+        "x": 580,
+        "y": 1100
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "HUFO-ECOR-CI-COM-001",
+      "id": "HUFO-ECOR-CI-COM-001",
+      "interface": "Bundle-Ether20.810",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 810,
+        "y": 1100
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "HUFO-ECOR-CI-COM-002",
+      "id": "HUFO-ECOR-CI-COM-002",
+      "interface": "Bundle-Ether20.811",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 1040,
+        "y": 1100
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "RSHD-ECOR-CI-COM-001",
+      "id": "RSHD-ECOR-CI-COM-001",
+      "interface": "Bundle-Ether20.800",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 1270,
+        "y": 1100
+      }
+    },
+    {
+      "cpu_utilization": 0,
+      "device": "RSHD-ECOR-CI-COM-002",
+      "id": "RSHD-ECOR-CI-COM-002",
+      "interface": "Bundle-Ether20.801",
+      "ip": "",
+      "location": "outer",
+      "memory_utilization": 0,
+      "position": {
+        "x": 1500,
+        "y": 1100
+      }
+    }
+  ]
+}

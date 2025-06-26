@@ -1,0 +1,42 @@
+[
+    {
+        "routerA": "MLQA-ECOR-CI-COM-001",
+        "routerB": "MALZ-ECOR-CI-COM-001",
+        "routerAInterface": "Bundle-Ether30.930",
+        "routerBInterface": "Bundle-Ether20.930",
+        "download_percentage": 16.705,
+        "upload_percentage": 55.968
+    },
+    {
+        "routerA": "MLQA-ECOR-CI-COM-001",
+        "routerB": "SULY-ECOR-CI-COM-001",
+        "routerAInterface": "Bundle-Ether22.900",
+        "routerBInterface": "Bundle-Ether20.900",
+        "download_percentage": 26.198,
+        "upload_percentage": 26.993
+    },
+    {
+        "routerA": "MLQA-ECOR-CI-COM-001",
+        "routerB": "ADAM-ECOR-CI-COM-001",
+        "routerAInterface": "BE20.40",
+        "routerBInterface": "BE20.40",
+        "download_percentage": 2.382,
+        "upload_percentage": 18.531
+    },
+    {
+        "routerA": "MLQA-ECOR-CI-COM-001",
+        "routerB": "SULM-ECOR-CI-COM-001",
+        "routerAInterface": "BE20.10",
+        "routerBInterface": "BE20.10",
+        "download_percentage": 2.358,
+        "upload_percentage": 1.28
+    },
+    {
+        "routerA": "MLQA-ECOR-CI-COM-001",
+        "routerB": "SULY-ECOR-CI-COM-001",
+        "routerAInterface": "Bundle-Ether1000",
+        "routerBInterface": "Bundle-Ether1000",
+        "download_percentage": 0.334,
+        "upload_percentage": 0.334
+    }
+]

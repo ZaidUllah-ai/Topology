@@ -1,0 +1,42 @@
+# Virtual environment
+venv/
+.envrc
+.python-version
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Logs and databases
+*.log
+*.db
+*.sqlite3
+
+# Compiled files
+*.pyo
+*.pyd
+
+# MacOS
+.DS_Store
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+
+
+# Excel/CSV files
+*.xlsx
+*.xls
+*.csv
+
+# Archives
+*.zip
+*.tar
+*.gz
+
+# VSCode/IDE
+.vscode/
+.idea/
+
