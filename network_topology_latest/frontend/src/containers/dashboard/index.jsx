@@ -1,28 +1,18 @@
-import {
-  ResponsiveContainer,
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend as RechartsLegend,
-} from "recharts";
-
-// import SimpleAreaChart from '../../components/SimpleAreaChart';
-
-
+import SimpleAreaChart from '../../components/SimpleAreaChart';
 
 import React, { useEffect, useState, useCallback, useContext } from "react";
 import axios, { baseUrl } from "../../utils/axios/index";
 import Logo from "./logo";
+import OrangeSwitchIcon from "../../resources/images/orangeSwitch.png";
+import OrangeRouterIcon from "../../resources/images/orangeRouter.png";
 import Router from "../../resources/images/router.png";
 import ReactFlow, { addEdge } from "reactflow";
 import "reactflow/dist/style.css";
-import Circle from "../../resources/images/Circle.svg";
+import Circle from "../../resources/images/Circle.png";
 import TopUtilizationCard from "./topUtilizationCard";
 import Legend from "./legend";
 import { Switch, Modal, Button } from "antd";
+import CustomNode from "./customNode";
 import { Context } from "../../context";
 
 const DEFAULT_WINDOW_WIDTH = 2100;
@@ -30,6 +20,7 @@ const DEFAULT_WINDOW_HEIGHT = 1180;
 let toggleNodes = false;
 let edgesVisibleG = true;
 let secondaryEdgesVisibleG = true;
+let nodeSelectedG = null;
 
 export function convertJSONToString(jsonData) {
   return JSON.stringify(jsonData);
@@ -65,10 +56,49 @@ function Index(props) {
   const [edgesVisible, setEdgesVisible] = useState(true);
   const [secondaryEdgesVisible, setSecondaryEdgesVisible] = useState(true);
   const [selectedEdgeData, setSelectedEdgeData] = useState(null);
+  const [nodeSelected, setNodeSelected] = useState(null);
+  const [nodeDataSelected, setNodeDataSelected] = useState(null);
+
+  // const [duration, setDuration] = useState("1h"); // Default duration set to 1 hour for Trend Filter
+  const [trendData, setTrendData] = useState([]); // State to hold trend data
+  const [selectedEdgeId, setSelectedEdgeId] = useState(null);
+
+
+  const nodeTypes = { customNode: CustomNode };
+
   const handleResize = () => {
-    console.log({ width: window.innerWidth, height: window.innerHeight });
+    // console.log({ width: window.innerWidth, height: window.innerHeight });
     setWindowSize({ width: window.innerWidth, height: window.innerHeight });
   };
+
+  // Function to aggregate trend data into buckets
+  function aggregateTrendData(data, bucketSize) {
+    const result = [];
+
+    for (let i = 0; i < data.length; i += bucketSize) {
+      const bucket = data.slice(i, i + bucketSize);
+
+      const time = new Date(bucket[0].time).toLocaleTimeString([], {
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+
+
+      const avgUpload = bucket.reduce((sum, item) => sum + (item.upload || 0), 0) / bucket.length;
+      const avgDownload = bucket.reduce((sum, item) => sum + (item.download || 0), 0) / bucket.length;
+
+      result.push({
+        time: bucket[0].time.replace(/T/, ' ').replace(/Z/, ''),
+        upload: +avgUpload.toFixed(2),
+        download: +avgDownload.toFixed(2),
+      });
+    }
+
+    return result;
+  }
+
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
@@ -80,14 +110,16 @@ function Index(props) {
   useEffect(() => {
     const intervalId = setInterval(handleApis, 5 * 60 * 1000);
     return () => {
+      localStorage.removeItem("edges_list_dashboard");
+      localStorage.removeItem("node_dashboard");
       clearInterval(intervalId);
     };
   }, []);
 
-  useEffect(() => {
-    localStorage.removeItem("edges_list");
+  const handleApis2 = () => {
+    document.title = "EDN WAN Topology";
     axios
-      .get(`${baseUrl}/topInterfaceUtilization`)
+      .get(`${baseUrl}/topInterfaceUtilizations`)
       .then((response) => {
         setTopUtils(response.data);
       })
@@ -96,19 +128,38 @@ function Index(props) {
       });
 
     axios
-      .get(`${baseUrl}/get-router`)
+      .get(`${baseUrl}/get-test-routers`)
       .then((response) => {
         localStorage.setItem(
-          "edges_list",
+          "edges_list_dashboard",
           JSON.stringify(response.data.edges_list)
         );
+
         let node_list = response.data.node_list;
+        let tempEdges = response.data.edges_list;
+
+        const targetCounts = {};
+
+        for (const edge of tempEdges) {
+          const { target } = edge;
+          if (target in targetCounts) {
+            targetCounts[target] += 1;
+          } else {
+            targetCounts[target] = 1;
+          }
+        }
+
         for (let i = 0; i < node_list.length; i++) {
           node_list[i]["data"] = {
             label: (
               <div style={{ border: "0px solid red", padding: "0" }}>
                 <img
-                  src={Router}
+                  src={
+                    node_list[i].cpu_utilization > 70 ||
+                      node_list[i].memory_utilization > 70
+                      ? OrangeRouterIcon
+                      : Router
+                  }
                   alt="Grid"
                   width={node_list[i].location === "inner" ? 30 : 20}
                   style={{
@@ -129,6 +180,8 @@ function Index(props) {
                 </p>
               </div>
             ),
+            id: node_list[i].id,
+            count: targetCounts[node_list[i].id],
           };
           node_list[i]["style"] = {
             backgroundColor: "transparent",
@@ -144,17 +197,22 @@ function Index(props) {
         setNodes(node_list);
         let edges_list = response.data.edges_list;
         for (let i = 0; i < edges_list.length; i++) {
-          if (edges_list[i]["bandwidth_utilization"] >= 80) {
+          let higherUtilization = Math.max(
+            edges_list[i]["upload_utilization"],
+            edges_list[i]["download_utilization"]
+          );
+
+          if (higherUtilization >= 80) {
             edges_list[i]["style"] = {
               stroke: "#dc3545",
               strokeWidth: 1,
             };
-          } else if (edges_list[i]["bandwidth_utilization"] >= 50) {
+          } else if (higherUtilization >= 50) {
             edges_list[i]["style"] = {
               stroke: "#ff8d41",
               strokeWidth: 1,
             };
-          } else if (edges_list[i]["bandwidth_utilization"] > 0) {
+          } else if (higherUtilization > 0) {
             edges_list[i]["style"] = {
               stroke: "#038d03",
               strokeWidth: 1,
@@ -170,17 +228,23 @@ function Index(props) {
 
         frontendEdges = edges_list;
         setEdges(edges_list);
-        localStorage.setItem("node", convertJSONToString(node_list));
+        localStorage.setItem("node_dashboard", convertJSONToString(node_list));
+
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
       });
+  }
+
+  useEffect(() => {
+    handleApis2();
   }, []);
 
   const handleApis = () => {
+    setEdges([]);
     setVisible(false);
     axios
-      .get(`${baseUrl}/topInterfaceUtilization`)
+      .get(`${baseUrl}/topInterfaceUtilizations`)
       .then((response) => {
         setTopUtils(response.data);
       })
@@ -189,19 +253,36 @@ function Index(props) {
       });
 
     axios
-      .get(`${baseUrl}/get-router`)
+      .get(`${baseUrl}/get-test-routers`)
       .then((response) => {
         localStorage.setItem(
-          "edges_list",
+          "edges_list_dashboard",
           JSON.stringify(response.data.edges_list)
         );
         let node_list = response.data.node_list;
+
+        let tempEdges = response.data.edges_list;
+        const targetCounts = {};
+        for (const edge of tempEdges) {
+          const { target } = edge;
+          if (target in targetCounts) {
+            targetCounts[target] += 1;
+          } else {
+            targetCounts[target] = 1;
+          }
+        }
+
         for (let i = 0; i < node_list.length; i++) {
           node_list[i]["data"] = {
             label: (
               <div style={{ border: "0px solid red", padding: "0" }}>
                 <img
-                  src={Router}
+                  src={
+                    node_list[i].cpu_utilization > 70 ||
+                      node_list[i].memory_utilization > 70
+                      ? OrangeRouterIcon
+                      : Router
+                  }
                   alt="Grid"
                   width={node_list[i].location === "inner" ? 30 : 20}
                   style={{
@@ -222,6 +303,8 @@ function Index(props) {
                 </p>
               </div>
             ),
+            id: node_list[i].id,
+            count: targetCounts[node_list[i].id],
           };
           node_list[i]["style"] = {
             backgroundColor: "transparent",
@@ -233,21 +316,26 @@ function Index(props) {
             node_list[i]["position"].x,
             node_list[i]["position"].y
           );
+          // node_list[i]["type"] = "customNode";
         }
 
         let edges_list = response.data.edges_list;
         for (let i = 0; i < edges_list.length; i++) {
-          if (edges_list[i]["bandwidth_utilization"] >= 80) {
+          let higherUtilization = Math.max(
+            edges_list[i]["upload_utilization"],
+            edges_list[i]["download_utilization"]
+          );
+          if (higherUtilization >= 80) {
             edges_list[i]["style"] = {
               stroke: "#dc3545",
               strokeWidth: 1,
             };
-          } else if (edges_list[i]["bandwidth_utilization"] >= 50) {
+          } else if (higherUtilization >= 50) {
             edges_list[i]["style"] = {
               stroke: "#ff8d41",
               strokeWidth: 1,
             };
-          } else if (edges_list[i]["bandwidth_utilization"] > 0) {
+          } else if (higherUtilization > 0) {
             edges_list[i]["style"] = {
               stroke: "#038d03",
               strokeWidth: 1,
@@ -261,7 +349,7 @@ function Index(props) {
           edges_list[i].label = "";
         }
 
-        localStorage.setItem("node", convertJSONToString(node_list));
+        localStorage.setItem("node_dashboard", convertJSONToString(node_list));
 
         if (edgesVisibleG === false && secondaryEdgesVisibleG === false) {
           console.log("ff");
@@ -281,7 +369,16 @@ function Index(props) {
         } else {
           console.log("tt");
           frontendEdges = edges_list;
-          setEdges(edges_list);
+          if (nodeSelectedG) {
+            setEdges(
+              frontendEdges.filter(
+                (item) =>
+                  item.target === nodeSelectedG || item.source === nodeSelectedG
+              )
+            );
+          } else {
+            setEdges(frontendEdges);
+          }
         }
       })
       .catch((error) => {
@@ -295,6 +392,8 @@ function Index(props) {
     edges,
     isSetEdges = true
   ) => {
+    setNodeSelected(null);
+    nodeSelectedG = null;
     let hidden = !visible;
     let inners = nodes?.reduce((innerIds, node) => {
       if (node.location === "inner") {
@@ -320,12 +419,23 @@ function Index(props) {
 
     if (isSetEdges) {
       frontendEdges = updatedEdges;
-      setEdges(updatedEdges);
+      if (nodeSelectedG) {
+        setEdges(
+          frontendEdges.filter(
+            (item) =>
+              item.target === nodeSelectedG || item.source === nodeSelectedG
+          )
+        );
+      } else {
+        setEdges(updatedEdges);
+      }
     }
     return updatedEdges;
   };
 
   const toggleSecondaryEdgesAfterRefresh = (visible, edges) => {
+    setNodeSelected(null);
+    nodeSelectedG = null;
     let hidden = !visible;
     let updatedEdges = edges?.map((edge) => {
       if (edge.target.charAt(edge.target.length - 1) == "2") {
@@ -338,10 +448,21 @@ function Index(props) {
     });
 
     frontendEdges = updatedEdges;
-    setEdges(updatedEdges);
+    if (nodeSelectedG) {
+      setEdges(
+        frontendEdges.filter(
+          (item) =>
+            item.target === nodeSelectedG || item.source === nodeSelectedG
+        )
+      );
+    } else {
+      setEdges(updatedEdges);
+    }
   };
 
   const toggleEdgesHandler = (hidden) => {
+    setNodeSelected(null);
+    nodeSelectedG = null;
     setEdgesVisible(!hidden);
     edgesVisibleG = !hidden;
     let inners = nodes?.reduce((innerIds, node) => {
@@ -352,7 +473,7 @@ function Index(props) {
       return innerIds;
     }, []);
 
-    let updatedEdges = edges?.map((edge) => {
+    let updatedEdges = frontendEdges?.map((edge) => {
       if (!(inners.includes(edge.target) && inners.includes(edge.source))) {
         return {
           ...edge,
@@ -372,9 +493,13 @@ function Index(props) {
   };
 
   const toggleSecondaryEdges = (hidden) => {
+    if (!hidden) {
+      setNodeSelected(null);
+      nodeSelectedG = null;
+    }
     setSecondaryEdgesVisible(!hidden);
     secondaryEdgesVisibleG = !hidden;
-    let updatedEdges = edges?.map((edge) => {
+    let updatedEdges = frontendEdges?.map((edge) => {
       if (edge.target.charAt(edge.target.length - 1) == "2") {
         return {
           ...edge,
@@ -404,11 +529,17 @@ function Index(props) {
     [setEdges]
   );
 
-  const [node_selected, set_node_selected] = useState(null);
   const handleNodeClick = (event, node) => {
-    if (node_selected === node.id) {
-      set_node_selected(null);
-      let updatedEdges = edges?.map((edge) => {
+    // console.log(node);
+    // console.log(frontendEdges);
+    // console.log(nodeSelectedG);
+    if (nodeSelectedG === node.id) {
+      setEdgesVisible(true);
+      setSecondaryEdgesVisible(true);
+      setNodeSelected(null);
+      nodeSelectedG = null;
+      setNodeDataSelected(null);
+      let updatedEdges = frontendEdges?.map((edge) => {
         return {
           ...edge,
           hidden: false,
@@ -417,8 +548,10 @@ function Index(props) {
       frontendEdges = updatedEdges;
       setEdges(updatedEdges);
     } else {
-      set_node_selected(node.id);
-      let updatedEdges = edges?.map((edge) => {
+      setNodeSelected(node.id);
+      nodeSelectedG = node.id;
+      setNodeDataSelected(node);
+      let updatedEdges = frontendEdges?.map((edge) => {
         if (edge.source === node.id || edge.target === node.id) {
           return {
             ...edge,
@@ -433,12 +566,39 @@ function Index(props) {
       });
 
       frontendEdges = updatedEdges;
-      setEdges(updatedEdges);
+      if (nodeSelectedG) {
+        setEdges(
+          frontendEdges?.filter(
+            (item) =>
+              item.target === nodeSelectedG || item.source === nodeSelectedG
+          )
+        );
+      } else {
+        setEdges(updatedEdges);
+      }
     }
   };
 
-  const handleEdgeClick = (event, edge) => {
-    showModal(edge);
+  const handleEdgeClick = (event, selectedEdge) => {
+    // debugger;
+    setSelectedEdgeId(selectedEdge.id);
+
+    if (!selectedEdge) return;
+
+    const uploadTrend = selectedEdge.upload_utilization_trend || [];
+    const downloadTrend = selectedEdge.download_utilization_trend || [];
+
+    const rawTrend = uploadTrend.map((item, idx) => ({
+      time: item.time,
+      upload: +(item.value || 0),
+      download: +(downloadTrend[idx]?.value || 0),
+    }));
+
+    let bucketSize = 1;
+
+    const chartData = aggregateTrendData(rawTrend, bucketSize);
+    setTrendData(chartData);
+    showModal(selectedEdge);
   };
 
   const showModal = (data) => {
@@ -452,14 +612,14 @@ function Index(props) {
   };
 
   const handleOnEdgeMouseEnter = (event, edge) => {
-    let edgesString = localStorage.getItem("edges_list");
+    let edgesString = localStorage.getItem("edges_list_dashboard");
     let edgeData = [];
     if (edgesString) {
       edgeData = JSON.parse(edgesString);
     }
 
     let edgeFound = edgeData?.find((item) => item.id === edge.id);
-    console.log("$$$$", edgeFound);
+    console.log("Updated $$$$", edgeFound);
     let updatedEdges = frontendEdges?.map((item) => {
       if (item.id === edge.id) {
         return {
@@ -470,17 +630,20 @@ function Index(props) {
       return item;
     });
 
-    setEdges(updatedEdges);
+    if (nodeSelectedG) {
+      setEdges(
+        updatedEdges.filter(
+          (item) =>
+            item.target === nodeSelectedG || item.source === nodeSelectedG
+        )
+      );
+    } else {
+      setEdges(updatedEdges);
+    }
   };
 
-  const trendData = (selectedEdgeData?.upload_utilization_trend || []).map((item, index) => ({
-    time: new Date(item.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-    upload: item.value,
-    download: selectedEdgeData?.download_utilization_trend?.[index]?.value || 0,
-  }));
-
   const handleOnEdgeMouseLeave = (event, edge) => {
-    let edgesString = localStorage.getItem("edges_list");
+    let edgesString = localStorage.getItem("edges_list_dashboard");
     let edgeData = [];
     if (edgesString) {
       edgeData = JSON.parse(edgesString);
@@ -496,18 +659,29 @@ function Index(props) {
       return item;
     });
 
-    setEdges(updatedEdges);
+    if (nodeSelectedG) {
+      setEdges(
+        frontendEdges.filter(
+          (item) =>
+            item.target === nodeSelectedG || item.source === nodeSelectedG
+        )
+      );
+    } else {
+      setEdges(updatedEdges);
+    }
+  };
+
+  const [hoveredNode, setHoveredNode] = useState(null);
+  const handleNodeMouseEnter = (event, node) => {
+    setHoveredNode(node);
+  };
+
+  const handleNodeMouseLeave = () => {
+    setHoveredNode(null);
   };
 
   return (
-    <div
-      style={{
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <div style={{ height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", }}>
       {visible ? (
         <Modal
           title={
@@ -519,84 +693,85 @@ function Index(props) {
           onOk={handleOk}
           onCancel={null}
           closable={false}
+          centered
           width={1000}
-          // height={300}
+          height={200}
           footer={[
             <Button key="ok" type="primary" onClick={handleOk}>
               OK
             </Button>,
           ]}
-          style={{
-            top: 40,
-            transform: 'translate(-50%, 0)',
-            left: '40%',
-            position: 'Fixed',	
-          }}
+          style={{ top: 60, height: "200px !important", transform: 'translate(-50%, 0)', position: 'Fixed' }}
         >
-          <p><strong>Source:</strong> {selectedEdgeData?.source} ({selectedEdgeData?.source_ip})</p>
-          <p><strong>Source Interface:</strong> {selectedEdgeData?.interface_a}</p>
-          <p><strong>Source UPE/Media Device:</strong> {selectedEdgeData?.upe_device_a || 'NA'}</p>
-
-          <p><strong>Target:</strong> {selectedEdgeData?.target} ({selectedEdgeData?.target_ip})</p>
-          <p><strong>Target Interface:</strong> {selectedEdgeData?.interface_b}</p>
-          <p><strong>Target UPE/Media Device:</strong> {selectedEdgeData?.upe_device_b || 'NA'}</p>
-
-          <p><strong>Vlan ID:</strong> {selectedEdgeData?.vlan_id || 'NA'}</p>
-
-          <p><strong>Download:</strong> {selectedEdgeData?.download} mb</p>
-          <p><strong>Upload:</strong> {selectedEdgeData?.upload} mb</p>
-          <p><strong>Link Capacity:</strong> {selectedEdgeData?.high_speed} mb</p>
-
-          <p><strong>Download Utilization:</strong> {selectedEdgeData?.download_utilization} %</p>
-          <p><strong>Upload Utilization:</strong> {selectedEdgeData?.upload_utilization} %</p>
-
-          <p><strong>Errors:</strong> in-{selectedEdgeData?.input_errors || 0}, out-{selectedEdgeData?.output_errors || 0}</p>
-          <p><strong>Packet Drops:</strong> in-{selectedEdgeData?.input_drops || 0}, out-{selectedEdgeData?.output_drops || 0}</p>
-
-          {/* Download Trend */}
-          {/* <div>
-            <strong>Download Utilization Trend:</strong>
-            <ul style={{ maxHeight: '200px', overflowY: 'auto', paddingLeft: '20px' }}>
-              {(selectedEdgeData?.download_utilization_trend || []).map((item, index) => (
-                <li key={index}>{item.time} - {item.value.toFixed(2)}%</li>
-              ))}
-            </ul>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <div>
+              <strong> Source: </strong> {selectedEdgeData?.source} ({selectedEdgeData?.source_ip})
+            </div>
+            <div>
+              <strong> Source Interface: </strong> {selectedEdgeData?.interface_a}
+            </div>
+            <div>
+              <strong> Source UPE/Media Device: </strong> {selectedEdgeData?.source_upe_media_device}
+            </div>
+            <div>
+              <strong> Target: </strong> {selectedEdgeData?.target} ({selectedEdgeData?.target_ip})
+            </div>
+            <div>
+              <strong> Target Interface: </strong> {selectedEdgeData?.interface_b}
+            </div>
+            <div>
+              <strong> Target UPE/Media Device: </strong> {selectedEdgeData?.target_upe_media_device}
+            </div>
+            <div>
+              <strong> Vlan ID: </strong> {selectedEdgeData?.vlan_id}
+            </div>
+            <div>
+              <strong> Download: </strong> {selectedEdgeData?.download} mb
+            </div>
+            <div>
+              <strong> Upload: </strong> {selectedEdgeData?.upload} mb
+            </div>
+            <div>
+              <strong> Link Capacity: </strong> {selectedEdgeData?.high_speed} mb
+            </div>
+            <div>
+              <strong> Download Utilization: </strong> {selectedEdgeData?.download_utilization}%
+            </div>
+            <div>
+              <strong> Upload Utilization: </strong> {selectedEdgeData?.upload_utilization}%
+            </div>
+            <div>
+              <strong> Errors: </strong> {selectedEdgeData?.errors}
+            </div>
+            <div>
+              <strong> Packet Drops: </strong> {selectedEdgeData?.packet_drops}
+            </div>
           </div>
-          <div>
-            <strong>Upload Utilization Trend:</strong>
-            <ul style={{ maxHeight: '200px', overflowY: 'auto', paddingLeft: '20px' }}>
-              {(selectedEdgeData?.upload_utilization_trend || []).map((item, index) => (
-                <li key={index}>{item.time} - {item.value.toFixed(2)}%</li>
-              ))}
-            </ul>
-          </div> */}
-
-          <h3 style={{ marginTop: 5, textAlign: "center" }}>Utilization Trend</h3>
-          <ResponsiveContainer width="90%" height={200}>
-            <AreaChart data={trendData}>
-              <defs>
-                <linearGradient id="colorUpload" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
-                  <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
-                </linearGradient>
-                <linearGradient id="colorDownload" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#f9b115" stopOpacity={0.8} />
-                  <stop offset="95%" stopColor="#f9b115" stopOpacity={0} />
-                </linearGradient>
-              </defs>
-              <XAxis dataKey="time" />
-              <YAxis />
-              <CartesianGrid strokeDasharray="3 3" />
-              <Tooltip />
-              <RechartsLegend />
-              <Area type="monotone" dataKey="upload" stroke="#82ca9d" fillOpacity={1} fill="url(#colorUpload)" name="Upload Utilization" />
-              <Area type="monotone" dataKey="download" stroke="#f9b115" fillOpacity={1} fill="url(#colorDownload)" name="Download Utilization" />
-            </AreaChart>
-          </ResponsiveContainer>
 
           {/* Simple Chart */}
-          <h3 style={{ marginTop: 5, textAlign: "center" }}>Utilization Trend</h3>
-          <SimpleAreaChart data={trendData} width={900} height={250} />
+          <div style={{ display: "flex", justifyContent: "center", textAlign: "center", paddingTop: "0px"}}>
+            <h4>Utilization Trend</h4>
+            {/* <div style={{ display: "flex", alignItems: "center", gap: "8px", padding: "0px 50px" }}>
+              <div>
+
+                <label htmlFor="filter"> <strong>Time Range </strong></label>
+              </div>
+              <div>
+
+                <select name="filter" id="filter" value={duration} onChange={(e) => setDuration(e.target.value)} style={{ padding: "6px 8px", fontSize: "13px", borderRadius: "4px" }}>
+                  <option value="30m">Last 30 Minutes</option>
+                  <option value="1h">Last 1 Hour</option>
+                  <option value="2h">Last 2 Hours</option>
+                  <option value="6h">Last 6 Hours</option>
+                  <option value="12h">Last 12 Hours</option>
+                  <option value="24h">Last 24 Hours</option>
+                </select>
+              </div>
+            </div> */}
+          </div>
+          <div style={{ display: "flex", justifyContent: "center", marginTop: "0px" }}>
+            <SimpleAreaChart data={trendData} width={900} height={230} />
+          </div>
 
         </Modal>
       ) : null}
@@ -646,7 +821,7 @@ function Index(props) {
         <div
           style={{
             position: "absolute",
-            zIndex: "99999",
+            zIndex: "888888",
             marginTop: "120px",
             marginRight: "10px",
             top: "0",
@@ -662,7 +837,7 @@ function Index(props) {
           size="small"
           style={{
             position: "absolute",
-            zIndex: "99999",
+            zIndex: "88888",
             marginTop: "140px",
             marginRight: "10px",
             top: "0",
@@ -678,7 +853,7 @@ function Index(props) {
         <div
           style={{
             position: "absolute",
-            zIndex: "99999",
+            zIndex: "88888",
             marginTop: "160px",
             marginRight: "10px",
             top: "0",
@@ -694,7 +869,7 @@ function Index(props) {
           size="small"
           style={{
             position: "absolute",
-            zIndex: "99999",
+            zIndex: "888888",
             marginTop: "180px",
             marginRight: "10px",
             top: "0",
@@ -746,8 +921,56 @@ function Index(props) {
           onEdgeClick={handleEdgeClick}
           onEdgeMouseEnter={handleOnEdgeMouseEnter}
           onEdgeMouseLeave={handleOnEdgeMouseLeave}
-        />
+          onNodeMouseEnter={handleNodeMouseEnter}
+          onNodeMouseLeave={handleNodeMouseLeave}
+          nodeTypes={nodeTypes}
+        >
+          {hoveredNode && (
+            <div
+              style={{
+                position: "absolute",
+                top: hoveredNode.position.y - 30, // Adjust as needed
+                left: hoveredNode.position.x - 0, // Adjust as needed
+                backgroundColor: "white",
+                padding: "5px",
+                border: "1px solid #ccc",
+                borderRadius: "3px",
+                fontSize: "10px",
+                zIndex: "999999",
+              }}
+            >
+              CPU: {hoveredNode?.cpu_utilization}% &nbsp;&nbsp; MEM:{" "}
+              {hoveredNode?.memory_utilization}%
+            </div>
+          )}
+        </ReactFlow>
       )}
+
+      {nodeSelected ? (
+        <div
+          style={{
+            zIndex: "3",
+            position: "absolute",
+            top: "0",
+          }}
+        >
+          <div
+            style={{
+              zIndex: "3",
+              borderRadius: "3px",
+              border: " 1px solid white",
+              background: "rgba(0, 0, 0, 0.5)",
+              backdropFilter: "blur(0px)",
+              padding: "10px",
+              color: "white",
+            }}
+          >
+            CPU Utilization: {nodeDataSelected?.cpu_utilization}%{" "}
+            &nbsp;&nbsp;&nbsp; Memory Utilization:{" "}
+            {nodeDataSelected?.memory_utilization}%
+          </div>
+        </div>
+      ) : null}
 
       <Logo />
       {showCards ? (

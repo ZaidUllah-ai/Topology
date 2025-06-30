@@ -1,4 +1,8 @@
 FROM node:latest
+
+ENV http_proxy http://10.73.211.145:8080/
+ENV https_proxy http://10.73.211.145:8080/
+
 RUN mkdir /frontend
 WORKDIR /frontend
 COPY . /frontend/

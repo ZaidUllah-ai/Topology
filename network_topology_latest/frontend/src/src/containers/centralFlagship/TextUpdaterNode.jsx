@@ -1,0 +1,56 @@
+import React, { useEffect, useState, useCallback } from "react";
+import { Handle, Position } from "reactflow";
+
+function TextUpdaterNode({ data, isConnectable }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  return (
+    <div style={{ border: "0px solid red", backgroundColor: "transparent" }}>
+      {data.id !== "MPLS" ? (
+        <Handle
+          type="target"
+          position={Position.Top}
+          id={`${data.id}-up`}
+          isConnectable={isConnectable}
+        />
+      ) : null}
+
+      {data?.count > 1 ? (
+        <Handle
+          type="target"
+          position={Position.Bottom}
+          id={`${data.id}-down`}
+          isConnectable={isConnectable}
+        />
+      ) : null}
+
+      {/* <div
+        style={{ backgroundColor: isHovered ? "red" : "transparent" }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {data?.label}
+      </div> */}
+
+      {data?.label}
+
+      {data.id === "MPLS" ? (
+        <Handle
+          type="source"
+          position={Position.Bottom}
+          isConnectable={isConnectable}
+        />
+      ) : null}
+    </div>
+  );
+}
+
+export default TextUpdaterNode;

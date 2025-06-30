@@ -56,21 +56,16 @@ const TopUtilizationCard = ({ data }) => {
                 padding: "5px",
                 fontSize: "10px",
                 fontWeight: "500",
-                // color,
-                // wordWrap: "normal",
               }}
             >
               <div>
-                {index + 1}. {element?.routerA}
-                {"<-->"}
-                {element?.routerB}
-                <br />
-                {element?.routerAInterface}
-                {"<-->"}
-                {element?.routerBInterface}
+                {index + 1}. {element?.deviceId} {"=>"}{" "}
+                {element?.routerInterface}
               </div>
-              {/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
-              <div>{element?.percentage}%</div>
+              <div>
+                D-{element?.download_percentage}% - U-
+                {element?.upload_percentage}%
+              </div>
             </div>
           );
         })}
