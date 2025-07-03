@@ -106,10 +106,13 @@ def place_nodes_on_square(n, p1, p2, p3):
 
 def parse_influx_data():
     devices_dict = {}
+    
+    # query for All the data of EDN topology
     query = 'SELECT * FROM EDN_TOPOLOGY_STATS WHERE time > now() - 15m and time < now() GROUP BY device_name, interface_name ORDER BY time DESC LIMIT 1;'
     dbClient = InfluxDBClient('192.168.211.100', 8086, '', '', 'edn_groups')
     results = dbClient.query(query)
 
+    # query for CPU & memory utilization based on device IP address
     query1 = 'SELECT * FROM EDN_TOPOLOGY_DEVICE_STATS WHERE time > now() - 15m and time < now() ORDER BY time;'
     dbClient = InfluxDBClient('192.168.211.100', 8086, '', '', 'edn_groups')
     device_results = dbClient.query(query1)

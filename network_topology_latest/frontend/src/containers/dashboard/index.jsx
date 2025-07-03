@@ -10,10 +10,13 @@ import ReactFlow, { addEdge } from "reactflow";
 import "reactflow/dist/style.css";
 import Circle from "../../resources/images/Circle.png";
 import TopUtilizationCard from "./topUtilizationCard";
+import TopCpuMemoryCard from "../../components/TopCpuMemoryCard";
 import Legend from "./legend";
 import { Switch, Modal, Button } from "antd";
 import CustomNode from "./customNode";
 import { Context } from "../../context";
+import TextUpdaterNode from "./TextUpdaterNode";
+
 
 const DEFAULT_WINDOW_WIDTH = 2100;
 const DEFAULT_WINDOW_HEIGHT = 1180;
@@ -45,6 +48,7 @@ function Index(props) {
     const newNodeX = nodeX * ratioX;
     const newNodeY = nodeY * ratioY;
 
+    // console.log(`Old Position: (${nodeX}, ${nodeY}), New Position: (${newNodeX}, ${newNodeY})`);
     return { x: newNodeX, y: newNodeY };
   }
 
@@ -62,9 +66,16 @@ function Index(props) {
   // const [duration, setDuration] = useState("1h"); // Default duration set to 1 hour for Trend Filter
   const [trendData, setTrendData] = useState([]); // State to hold trend data
   const [selectedEdgeId, setSelectedEdgeId] = useState(null);
+  const [topCpuMemory, setTopCpuMemory] = useState({ topCpu: [], topMemory: [] });
+
+
+
 
 
   const nodeTypes = { customNode: CustomNode };
+  console.log(nodeTypes, "NodeType")
+  // const nodeTypes = { textUpdater: TextUpdaterNode };
+
 
   const handleResize = () => {
     // console.log({ width: window.innerWidth, height: window.innerHeight });
@@ -85,6 +96,8 @@ function Index(props) {
         second: '2-digit'
       });
 
+      console.log("bucket", bucket);
+      console.log("bucket[0].time", bucket.length);
 
       const avgUpload = bucket.reduce((sum, item) => sum + (item.upload || 0), 0) / bucket.length;
       const avgDownload = bucket.reduce((sum, item) => sum + (item.download || 0), 0) / bucket.length;
@@ -98,6 +111,32 @@ function Index(props) {
 
     return result;
   }
+
+  function getTopCpuMemoryNodes(nodeList) {
+    // Filter out nodes where cpu_utilization or memory_utilization is not a number
+    const filteredNodes = nodeList.filter(
+      (node) =>
+        typeof node.cpu_utilization === "number" &&
+        typeof node.memory_utilization === "number"
+    );
+
+    // Top 5 CPU utilization nodes
+    const cpuSorted = [...filteredNodes]
+      .sort((a, b) => b.cpu_utilization - a.cpu_utilization)
+      .slice(0, 5);
+
+    // Top 5 Memory utilization nodes
+    const memorySorted = [...filteredNodes]
+      .sort((a, b) => b.memory_utilization - a.memory_utilization)
+      .slice(0, 5);
+
+    return {
+      topCpu: cpuSorted,
+      topMemory: memorySorted,
+    };
+  }
+
+
 
 
   useEffect(() => {
@@ -193,8 +232,18 @@ function Index(props) {
             node_list[i]["position"].x,
             node_list[i]["position"].y
           );
+          // node_list[i]["type"] = "textUpdater";
+          // node_list[i]["type"] = "customNode";
+
+
         }
+        const topData = getTopCpuMemoryNodes(node_list);
+        setTopCpuMemory(topData);
+
+
         setNodes(node_list);
+        let edgeTargetIds = [];
+
         let edges_list = response.data.edges_list;
         for (let i = 0; i < edges_list.length; i++) {
           let higherUtilization = Math.max(
@@ -205,28 +254,52 @@ function Index(props) {
           if (higherUtilization >= 80) {
             edges_list[i]["style"] = {
               stroke: "#dc3545",
-              strokeWidth: 1,
+              strokeWidth: 2,
             };
           } else if (higherUtilization >= 50) {
             edges_list[i]["style"] = {
               stroke: "#ff8d41",
-              strokeWidth: 1,
+              strokeWidth: 2,
             };
           } else if (higherUtilization > 0) {
             edges_list[i]["style"] = {
               stroke: "#038d03",
-              strokeWidth: 1,
+              strokeWidth: 2,
             };
           } else {
             edges_list[i]["style"] = {
               stroke: "#645e5e",
-              strokeWidth: 1,
+              strokeWidth: 2,
             };
           }
           edges_list[i].label = "";
+
+          let target = edges_list[i].target;
+          if (edgeTargetIds.includes(edges_list[i].target)) {
+
+            console.log("target", target);
+            edges_list[i]["targetHandle"] = edges_list[i].target + "-down";
+          } else {
+            edges_list[i]["targetHandle"] = edges_list[i].target + "-up";
+          }
+          edgeTargetIds.push(target);
         }
 
+
         frontendEdges = edges_list;
+
+        // edges_list.forEach(edge => {
+        //   if (edge.targetHandle && typeof edge.targetHandle === 'string' && edge.targetHandle.endsWith('-down')) {
+        //     console.log("down edge", edge);
+        //   }
+        // });
+
+        edges_list.forEach(edge => {
+          if (edge.id && edge.id == "edge-3" || edge.id == "edge-8") {
+            console.log("down edge", edge);
+          }
+        });
+        console.log("edges_list", edges_list[0]);
         setEdges(edges_list);
         localStorage.setItem("node_dashboard", convertJSONToString(node_list));
 
@@ -316,38 +389,61 @@ function Index(props) {
             node_list[i]["position"].x,
             node_list[i]["position"].y
           );
+          // node_list[i]["type"] = "textUpdater";
+
           // node_list[i]["type"] = "customNode";
         }
 
         let edges_list = response.data.edges_list;
+
+        let edgeTargetIds = [];
+
         for (let i = 0; i < edges_list.length; i++) {
           let higherUtilization = Math.max(
             edges_list[i]["upload_utilization"],
             edges_list[i]["download_utilization"]
           );
+
           if (higherUtilization >= 80) {
             edges_list[i]["style"] = {
               stroke: "#dc3545",
-              strokeWidth: 1,
+              strokeWidth: 2,
             };
           } else if (higherUtilization >= 50) {
             edges_list[i]["style"] = {
               stroke: "#ff8d41",
-              strokeWidth: 1,
+              strokeWidth: 2,
             };
           } else if (higherUtilization > 0) {
             edges_list[i]["style"] = {
               stroke: "#038d03",
-              strokeWidth: 1,
+              strokeWidth: 2,
             };
           } else {
             edges_list[i]["style"] = {
               stroke: "#645e5e",
-              strokeWidth: 1,
+              strokeWidth: 2,
             };
           }
           edges_list[i].label = "";
+
+          let target = edges_list[i].target;
+          if (edgeTargetIds.includes(edges_list[i].target)) {
+
+            console.log("target", target);
+            edges_list[i]["targetHandle"] = edges_list[i].target + "-down";
+          } else {
+            edges_list[i]["targetHandle"] = edges_list[i].target + "-up";
+          }
+          edgeTargetIds.push(target);
         }
+
+        edges_list.forEach(edge => {
+          if (edge.source && edge.source === "SULY-ECOR-CI-COM-001") {
+            console.log("down edge", edge);
+          }
+        });
+
 
         localStorage.setItem("node_dashboard", convertJSONToString(node_list));
 
@@ -580,7 +676,6 @@ function Index(props) {
   };
 
   const handleEdgeClick = (event, selectedEdge) => {
-    // debugger;
     setSelectedEdgeId(selectedEdge.id);
 
     if (!selectedEdge) return;
@@ -595,6 +690,11 @@ function Index(props) {
     }));
 
     let bucketSize = 1;
+    // if (duration === "2h") bucketSize = 2;
+    // else if (duration === "3h") bucketSize = 3;
+    // else if (duration === "6h") bucketSize = 6;
+    // else if (duration === "12h") bucketSize = 12;
+    // else if (duration === "24h") bucketSize = 12;
 
     const chartData = aggregateTrendData(rawTrend, bucketSize);
     setTrendData(chartData);
@@ -680,13 +780,16 @@ function Index(props) {
     setHoveredNode(null);
   };
 
+
+  console.log("edges", edges[0]);
+
   return (
-    <div style={{ height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", }}>
+    <div style={{ height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
       {visible ? (
         <Modal
           title={
-            <div style={{ textAlign: 'center', width: '100%' }}>
-              <p><strong>Edge Details</strong> </p>
+            <div style={{ textAlign: 'center', width: '100%', gap: "8px", bottom: "8px" }}>
+              <p style={{ fontSize: '16px', fontWeight: 'bold' }}>Edge Details</p>
             </div>
           }
           visible={visible}
@@ -695,86 +798,75 @@ function Index(props) {
           closable={false}
           centered
           width={1000}
-          height={200}
           footer={[
             <Button key="ok" type="primary" onClick={handleOk}>
               OK
             </Button>,
           ]}
-          style={{ top: 60, height: "200px !important", transform: 'translate(-50%, 0)', position: 'Fixed' }}
+          style={{
+            top: 30,
+            background: "linear-gradient(to bottom right, #ffffff, #f1f1f1)",
+            boxShadow: "0 8px 24px rgba(0, 0, 0, 0.2)",
+            borderRadius: "10px",
+            padding: "20px",
+            transform: 'translate(-50%, 0)',
+            position: 'fixed',
+            border: "1px solid #e0e0e0"
+          }}
         >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-            <div>
-              <strong> Source: </strong> {selectedEdgeData?.source} ({selectedEdgeData?.source_ip})
-            </div>
-            <div>
-              <strong> Source Interface: </strong> {selectedEdgeData?.interface_a}
-            </div>
-            <div>
-              <strong> Source UPE/Media Device: </strong> {selectedEdgeData?.source_upe_media_device}
-            </div>
-            <div>
-              <strong> Target: </strong> {selectedEdgeData?.target} ({selectedEdgeData?.target_ip})
-            </div>
-            <div>
-              <strong> Target Interface: </strong> {selectedEdgeData?.interface_b}
-            </div>
-            <div>
-              <strong> Target UPE/Media Device: </strong> {selectedEdgeData?.target_upe_media_device}
-            </div>
-            <div>
-              <strong> Vlan ID: </strong> {selectedEdgeData?.vlan_id}
-            </div>
-            <div>
-              <strong> Download: </strong> {selectedEdgeData?.download} mb
-            </div>
-            <div>
-              <strong> Upload: </strong> {selectedEdgeData?.upload} mb
-            </div>
-            <div>
-              <strong> Link Capacity: </strong> {selectedEdgeData?.high_speed} mb
-            </div>
-            <div>
-              <strong> Download Utilization: </strong> {selectedEdgeData?.download_utilization}%
-            </div>
-            <div>
-              <strong> Upload Utilization: </strong> {selectedEdgeData?.upload_utilization}%
-            </div>
-            <div>
-              <strong> Errors: </strong> {selectedEdgeData?.errors}
-            </div>
-            <div>
-              <strong> Packet Drops: </strong> {selectedEdgeData?.packet_drops}
-            </div>
+          {/* Edge Details Section */}
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '4px',
+            padding: "5px 8px",
+            backgroundColor: "#fafafa",
+            borderRadius: "3px",
+            border: "1px solid #ddd",
+            boxShadow: "inset 3 4px 6px rgba(0,0,0,0.05)"
+          }}>
+            <div><strong> Source: </strong> {selectedEdgeData?.source} ({selectedEdgeData?.source_ip})</div>
+            <div><strong> Source Interface: </strong> {selectedEdgeData?.interface_a}</div>
+            <div><strong> Source UPE/Media Device: </strong> {selectedEdgeData?.source_upe_media_device}</div>
+            <div><strong> Target: </strong> {selectedEdgeData?.target} ({selectedEdgeData?.target_ip})</div>
+            <div><strong> Target Interface: </strong> {selectedEdgeData?.interface_b}</div>
+            <div><strong> Target UPE/Media Device: </strong> {selectedEdgeData?.target_upe_media_device}</div>
+            <div><strong> Vlan ID: </strong> {selectedEdgeData?.vlan_id}</div>
+            <div><strong> Download: </strong> {selectedEdgeData?.download} mb</div>
+            <div><strong> Upload: </strong> {selectedEdgeData?.upload} mb</div>
+            <div><strong> Link Capacity: </strong> {selectedEdgeData?.high_speed} mb</div>
+            <div><strong> Errors: </strong> {selectedEdgeData?.errors}</div>
+            <div><strong> Packet Drops: </strong> {selectedEdgeData?.packet_drops}</div>
+            <div><strong> Download Utilization: </strong> {selectedEdgeData?.download_utilization}%</div>
+            <div><strong> Upload Utilization: </strong> {selectedEdgeData?.upload_utilization}%</div>
           </div>
 
-          {/* Simple Chart */}
-          <div style={{ display: "flex", justifyContent: "center", textAlign: "center", paddingTop: "0px"}}>
-            <h4>Utilization Trend</h4>
-            {/* <div style={{ display: "flex", alignItems: "center", gap: "8px", padding: "0px 50px" }}>
-              <div>
+          {/* 3D Horizontal Line + Title */}
+          <div style={{ margin: "20px 10px" }}>
+            <hr
+              style={{
+                border: "none",
+                height: "2px",
+                backgroundColor: "#1677ff",
+                boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
+                borderRadius: "2px",
+                width: "100%",
+                margin: "auto"
+              }}
+            />
 
-                <label htmlFor="filter"> <strong>Time Range </strong></label>
-              </div>
-              <div>
-
-                <select name="filter" id="filter" value={duration} onChange={(e) => setDuration(e.target.value)} style={{ padding: "6px 8px", fontSize: "13px", borderRadius: "4px" }}>
-                  <option value="30m">Last 30 Minutes</option>
-                  <option value="1h">Last 1 Hour</option>
-                  <option value="2h">Last 2 Hours</option>
-                  <option value="6h">Last 6 Hours</option>
-                  <option value="12h">Last 12 Hours</option>
-                  <option value="24h">Last 24 Hours</option>
-                </select>
-              </div>
-            </div> */}
+            <h4 style={{ textAlign: "center", marginTop: "5px", marginBottom: "5", fontWeight: "bold" }}>
+              Utilization Trend
+            </h4>
           </div>
-          <div style={{ display: "flex", justifyContent: "center", marginTop: "0px" }}>
+
+          {/* Chart */}
+          <div style={{ display: "flex", justifyContent: "center" }}>
             <SimpleAreaChart data={trendData} width={900} height={230} />
           </div>
-
         </Modal>
       ) : null}
+
       <h2
         style={{
           position: "absolute",
@@ -909,7 +1001,6 @@ function Index(props) {
         <ReactFlow
           nodes={nodes}
           edges={edges}
-          elements={nodes.concat(edges)}
           onConnect={onConnect}
           onPaneScroll={(e) => { }}
           panOnDrag={false}
@@ -924,6 +1015,8 @@ function Index(props) {
           onNodeMouseEnter={handleNodeMouseEnter}
           onNodeMouseLeave={handleNodeMouseLeave}
           nodeTypes={nodeTypes}
+          elements={nodes.concat(edges)}
+
         >
           {hoveredNode && (
             <div
@@ -975,6 +1068,7 @@ function Index(props) {
       <Logo />
       {showCards ? (
         <>
+          <TopCpuMemoryCard data={topCpuMemory} />
           <Legend />
           <TopUtilizationCard data={topUtils} />
         </>

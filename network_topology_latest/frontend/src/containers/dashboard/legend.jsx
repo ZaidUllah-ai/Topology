@@ -15,8 +15,8 @@ const Legend = (props) => {
         float: "right",
         position: "absolute",
         bottom: "0",
-        left: "0",
-        clear: "left",
+        // left: "0",
+        // clear: "left",
       }}
     >
       <div
@@ -62,6 +62,7 @@ const Legend = (props) => {
                 color: "white",
                 fontSize: "13px",
                 textAlign: "center",
+                backgroundbackground: "rgba(0, 0, 0, 0.60)",
                 // paddingTop: "2%",
                 paddingBottom: "5px",
               }}
