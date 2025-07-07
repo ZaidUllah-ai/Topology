@@ -58,7 +58,7 @@ function SimpleAreaChart({
 
   // Show X-labels every 2nd point to reduce clutter
   const xLabels = data.map((d, i) => {
-    if (i % 2 !== 0) return null;
+    // if (i % 2 !== 0) return null;
     return (
       <text
         key={i}

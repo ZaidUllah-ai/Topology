@@ -11,12 +11,15 @@ import "reactflow/dist/style.css";
 import Circle from "../../resources/images/Circle.png";
 import TopUtilizationCard from "./topUtilizationCard";
 import TopCpuMemoryCard from "../../components/TopCpuMemoryCard";
+import InventoryStatusCard from "../../components/InventoryStatusCard";
+import MergedUtilizationCard from "../../components/MergedUtilizationCard";
+
 import Legend from "./legend";
 import { Switch, Modal, Button } from "antd";
 import CustomNode from "./customNode";
 import { Context } from "../../context";
-import TextUpdaterNode from "./TextUpdaterNode";
 
+import { EyeOutlined } from '@ant-design/icons'; // Import Eye icon
 
 const DEFAULT_WINDOW_WIDTH = 2100;
 const DEFAULT_WINDOW_HEIGHT = 1180;
@@ -48,7 +51,6 @@ function Index(props) {
     const newNodeX = nodeX * ratioX;
     const newNodeY = nodeY * ratioY;
 
-    // console.log(`Old Position: (${nodeX}, ${nodeY}), New Position: (${newNodeX}, ${newNodeY})`);
     return { x: newNodeX, y: newNodeY };
   }
 
@@ -67,22 +69,20 @@ function Index(props) {
   const [trendData, setTrendData] = useState([]); // State to hold trend data
   const [selectedEdgeId, setSelectedEdgeId] = useState(null);
   const [topCpuMemory, setTopCpuMemory] = useState({ topCpu: [], topMemory: [] });
-
-
-
-
-
+  const [inventorystatsdata, setInventoryStats] = useState({});
   const nodeTypes = { customNode: CustomNode };
-  console.log(nodeTypes, "NodeType")
-  // const nodeTypes = { textUpdater: TextUpdaterNode };
+
+  const [showIAccessModal, setShowIAccessModal] = useState(false);
+  const [showF5ExecutiveModal, setShowF5ExecutiveModal] = useState(false);
+
+  // const [iframeError, setIframeError] = useState(false);
 
 
   const handleResize = () => {
-    // console.log({ width: window.innerWidth, height: window.innerHeight });
     setWindowSize({ width: window.innerWidth, height: window.innerHeight });
   };
 
-  // Function to aggregate trend data into buckets
+    // Function to aggregate trend data into buckets
   function aggregateTrendData(data, bucketSize) {
     const result = [];
 
@@ -95,9 +95,6 @@ function Index(props) {
         minute: '2-digit',
         second: '2-digit'
       });
-
-      console.log("bucket", bucket);
-      console.log("bucket[0].time", bucket.length);
 
       const avgUpload = bucket.reduce((sum, item) => sum + (item.upload || 0), 0) / bucket.length;
       const avgDownload = bucket.reduce((sum, item) => sum + (item.download || 0), 0) / bucket.length;
@@ -113,27 +110,23 @@ function Index(props) {
   }
 
   function getTopCpuMemoryNodes(nodeList) {
-    // Filter out nodes where cpu_utilization or memory_utilization is not a number
     const filteredNodes = nodeList.filter(
       (node) =>
         typeof node.cpu_utilization === "number" &&
         typeof node.memory_utilization === "number"
     );
 
-    // Top 5 CPU utilization nodes
+    // Top 5 CPU utilization
     const cpuSorted = [...filteredNodes]
       .sort((a, b) => b.cpu_utilization - a.cpu_utilization)
       .slice(0, 5);
 
-    // Top 5 Memory utilization nodes
+    // Top 5 Memory utilization
     const memorySorted = [...filteredNodes]
       .sort((a, b) => b.memory_utilization - a.memory_utilization)
       .slice(0, 5);
 
-    return {
-      topCpu: cpuSorted,
-      topMemory: memorySorted,
-    };
+    return { topCpu: cpuSorted, topMemory: memorySorted, };
   }
 
 
@@ -176,6 +169,7 @@ function Index(props) {
 
         let node_list = response.data.node_list;
         let tempEdges = response.data.edges_list;
+        let inventorystatsdata = response.data.edn_inventory_stats; 
 
         const targetCounts = {};
 
@@ -232,13 +226,13 @@ function Index(props) {
             node_list[i]["position"].x,
             node_list[i]["position"].y
           );
-          // node_list[i]["type"] = "textUpdater";
-          // node_list[i]["type"] = "customNode";
 
+          // node_list[i]["type"] = "customNode";
 
         }
         const topData = getTopCpuMemoryNodes(node_list);
         setTopCpuMemory(topData);
+        setInventoryStats(inventorystatsdata || {});
 
 
         setNodes(node_list);
@@ -254,52 +248,27 @@ function Index(props) {
           if (higherUtilization >= 80) {
             edges_list[i]["style"] = {
               stroke: "#dc3545",
-              strokeWidth: 2,
+              strokeWidth: 2.5,
             };
           } else if (higherUtilization >= 50) {
             edges_list[i]["style"] = {
               stroke: "#ff8d41",
-              strokeWidth: 2,
+              strokeWidth: 2.5,
             };
           } else if (higherUtilization > 0) {
             edges_list[i]["style"] = {
               stroke: "#038d03",
-              strokeWidth: 2,
+              strokeWidth: 2.5,
             };
           } else {
             edges_list[i]["style"] = {
               stroke: "#645e5e",
-              strokeWidth: 2,
+              strokeWidth: 2.5,
             };
           }
           edges_list[i].label = "";
-
-          let target = edges_list[i].target;
-          if (edgeTargetIds.includes(edges_list[i].target)) {
-
-            console.log("target", target);
-            edges_list[i]["targetHandle"] = edges_list[i].target + "-down";
-          } else {
-            edges_list[i]["targetHandle"] = edges_list[i].target + "-up";
-          }
-          edgeTargetIds.push(target);
         }
-
-
         frontendEdges = edges_list;
-
-        // edges_list.forEach(edge => {
-        //   if (edge.targetHandle && typeof edge.targetHandle === 'string' && edge.targetHandle.endsWith('-down')) {
-        //     console.log("down edge", edge);
-        //   }
-        // });
-
-        edges_list.forEach(edge => {
-          if (edge.id && edge.id == "edge-3" || edge.id == "edge-8") {
-            console.log("down edge", edge);
-          }
-        });
-        console.log("edges_list", edges_list[0]);
         setEdges(edges_list);
         localStorage.setItem("node_dashboard", convertJSONToString(node_list));
 
@@ -389,14 +358,10 @@ function Index(props) {
             node_list[i]["position"].x,
             node_list[i]["position"].y
           );
-          // node_list[i]["type"] = "textUpdater";
-
           // node_list[i]["type"] = "customNode";
         }
 
         let edges_list = response.data.edges_list;
-
-        let edgeTargetIds = [];
 
         for (let i = 0; i < edges_list.length; i++) {
           let higherUtilization = Math.max(
@@ -407,42 +372,26 @@ function Index(props) {
           if (higherUtilization >= 80) {
             edges_list[i]["style"] = {
               stroke: "#dc3545",
-              strokeWidth: 2,
+              strokeWidth: 2.5,
             };
           } else if (higherUtilization >= 50) {
             edges_list[i]["style"] = {
               stroke: "#ff8d41",
-              strokeWidth: 2,
+              strokeWidth: 2.5,
             };
           } else if (higherUtilization > 0) {
             edges_list[i]["style"] = {
               stroke: "#038d03",
-              strokeWidth: 2,
+              strokeWidth: 2.5,
             };
           } else {
             edges_list[i]["style"] = {
               stroke: "#645e5e",
-              strokeWidth: 2,
+              strokeWidth: 2.5,
             };
           }
           edges_list[i].label = "";
-
-          let target = edges_list[i].target;
-          if (edgeTargetIds.includes(edges_list[i].target)) {
-
-            console.log("target", target);
-            edges_list[i]["targetHandle"] = edges_list[i].target + "-down";
-          } else {
-            edges_list[i]["targetHandle"] = edges_list[i].target + "-up";
-          }
-          edgeTargetIds.push(target);
         }
-
-        edges_list.forEach(edge => {
-          if (edge.source && edge.source === "SULY-ECOR-CI-COM-001") {
-            console.log("down edge", edge);
-          }
-        });
 
 
         localStorage.setItem("node_dashboard", convertJSONToString(node_list));
@@ -626,9 +575,6 @@ function Index(props) {
   );
 
   const handleNodeClick = (event, node) => {
-    // console.log(node);
-    // console.log(frontendEdges);
-    // console.log(nodeSelectedG);
     if (nodeSelectedG === node.id) {
       setEdgesVisible(true);
       setSecondaryEdgesVisible(true);
@@ -780,9 +726,6 @@ function Index(props) {
     setHoveredNode(null);
   };
 
-
-  console.log("edges", edges[0]);
-
   return (
     <div style={{ height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
       {visible ? (
@@ -909,6 +852,7 @@ function Index(props) {
         />
       </div>
 
+      {/* Cards icon */}
       <div>
         <div
           style={{
@@ -941,6 +885,160 @@ function Index(props) {
         />
       </div>
 
+      {/* I Access Dashboard Modal */}
+      <Modal
+        title={
+          <div style={{ textAlign: "center", width: "100%" }}>
+            I-Access Dashboard
+          </div>
+        }
+        visible={showIAccessModal}
+        onCancel={() => setShowIAccessModal(false)}
+        width="85%"
+        bodyStyle={{ height: "78vh", padding: "5px 0" }}
+        footer={null}
+        destroyOnClose
+      >
+          <iframe
+            src="https://10.73.211.165:8443/public-dashboards/d/1uuuaxsNz/i-access-dashboard?orgId=1&kiosk"
+            // src="https://10.73.211.165:8443/public-dashboards/d/1uuuaxsNz/new-dashboard?orgId=1&kiosk=tv"
+            style={{ width: "100%", height: "100%", border: "none" }}
+            title="I Access Dashboard"
+            // onError={() => setIframeError(true)}
+          />
+        {/* )} */}
+      </Modal>
+
+      {/* I access dashboard */}
+
+      <div>
+        <div
+          style={{
+            position: "absolute",
+            zIndex: "88888",
+            marginTop: "200px",
+            marginRight: "10px",
+            top: "0",
+            right: "0",
+            color: "grey",
+            fontSize: "13px",
+            fontWeight: "bolder",
+          }}
+        >
+          I Access Dashboard
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            zIndex: "888888",
+            marginTop: "220px",
+            marginRight: "10px",
+            top: "0",
+            right: "0",
+            cursor: "pointer",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "30px",
+            height: "30px",
+            borderRadius: "50%",
+            background: "rgba(12, 54, 241, 0.1)",
+            border: "1px solid rgba(16, 0, 245, 0.3)",
+            boxShadow: "0 0 5px rgba(33, 150, 243, 0.3)",
+            transition: "all 0.3s"
+          }}
+          onClick={() => setShowIAccessModal(true)}
+          title="I Access Dashboard"
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "rgba(10, 127, 223, 0.15)";
+            e.currentTarget.style.boxShadow = "0 0 10px rgba(33, 150, 243, 0.5)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "rgba(255,255,255,0.1)";
+            e.currentTarget.style.boxShadow = "0 0 5px rgba(33, 150, 243, 0.3)";
+          }}
+        >
+          <EyeOutlined style={{ color: "#2196f3", fontSize: "22px" }} />
+        </div>
+      </div>
+
+      {/* F5 Execetive Dashboard Modal */}
+      <Modal
+        title={
+          <div style={{ textAlign: "center", width: "100%" }}>
+            F5 Executive Dashboard
+          </div>
+        }
+        visible={showF5ExecutiveModal}
+        onCancel={() => setShowF5ExecutiveModal(false)}
+        width="85%"
+        bodyStyle={{ height: "78vh", padding: "5px 0" }}
+        footer={null}
+        destroyOnClose
+      >
+          <iframe
+            src="https://10.73.211.165:8443/public-dashboards/d/1uuuaxsNz/i-access-dashboard?orgId=1&kiosk"
+            // src="https://10.73.211.165:8443/public-dashboards/d/1uuuaxsNz/new-dashboard?orgId=1&kiosk=tv"
+            style={{ width: "100%", height: "100%", border: "none" }}
+            title="I Access Dashboard"
+            // onError={() => setIframeError(true)}
+          />
+        {/* )} */}
+      </Modal>
+
+      {/* F5 Executive dashboard */}
+      <div>
+        <div
+          style={{
+            position: "absolute",
+            zIndex: "88888",
+            marginTop: "255px",
+            marginRight: "10px",
+            top: "0",
+            right: "0",
+            color: "grey",
+            fontSize: "13px",
+            fontWeight: "bolder",
+          }}
+        >
+          F5 Executive
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            zIndex: "888888",
+            marginTop: "275px",
+            marginRight: "10px",
+            top: "0",
+            right: "0",
+            cursor: "pointer",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "30px",
+            height: "30px",
+            borderRadius: "50%",
+            background: "rgba(12, 54, 241, 0.1)",
+            border: "1px solid rgba(16, 0, 245, 0.3)",
+            boxShadow: "0 0 5px rgba(33, 150, 243, 0.3)",
+            transition: "all 0.3s"
+          }}
+          onClick={() => setShowF5ExecutiveModal(true)}
+          title="F5 Executive Dashboard"
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "rgba(10, 127, 223, 0.15)";
+            e.currentTarget.style.boxShadow = "0 0 10px rgba(33, 150, 243, 0.5)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "rgba(255,255,255,0.1)";
+            e.currentTarget.style.boxShadow = "0 0 5px rgba(33, 150, 243, 0.3)";
+          }}
+        >
+          <EyeOutlined style={{ color: "#2196f3", fontSize: "22px" }} />
+        </div>
+      </div>
+
+      {/* Secondary Icon */}
       <div>
         <div
           style={{
@@ -997,6 +1095,7 @@ function Index(props) {
           }}
         />
       </div>
+
       {nodes.length !== 0 && (
         <ReactFlow
           nodes={nodes}
@@ -1068,9 +1167,11 @@ function Index(props) {
       <Logo />
       {showCards ? (
         <>
-          <TopCpuMemoryCard data={topCpuMemory} />
+          <InventoryStatusCard stats={inventorystatsdata} />
+          <MergedUtilizationCard cpuMemoryData={topCpuMemory} interfaceData={topUtils} />
+          {/* <TopCpuMemoryCard data={topCpuMemory} /> */}
           <Legend />
-          <TopUtilizationCard data={topUtils} />
+          {/* <TopUtilizationCard data={topUtils} /> */}
         </>
       ) : null}
     </div>

@@ -15,7 +15,7 @@ const Legend = (props) => {
         float: "right",
         position: "absolute",
         bottom: "0",
-        // left: "0",
+        left: "0",
         // clear: "left",
       }}
     >
